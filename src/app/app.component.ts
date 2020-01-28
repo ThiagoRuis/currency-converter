@@ -18,7 +18,6 @@ export class AppComponent  {
   currencyTo: string;
   language = 'pt-br';
   amount: number;
-  prefixes: {'BRL': 'R$', 'USD': 'U$', 'EUR': '€', 'BTC': 'BTC'};
 
   constructor(private http: HttpClient, private translate: TranslateService) {
       translate.setDefaultLang('pt-br');
