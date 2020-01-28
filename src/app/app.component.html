@@ -1,67 +1,48 @@
 <mat-card class="card-central">
     <mat-card-header>
         <mat-card-title>Conversor de moedas</mat-card-title>
-        <mat-card-subtitle>Ultima atualização 00:00</mat-card-subtitle>
+        <mat-card-subtitle>Ultima atualização {{ultimaAtualizacao}}</mat-card-subtitle>
         <mat-toolbar-row>
             <mat-button-toggle-group #language="matButtonToggleGroup">
-                <mat-button-toggle value="pt-br" aria-label="Portugues">
+                <mat-button-toggle (click)="setLanguage('pt-br')" aria-label="Portugues">
                     <span class="flag-icon flag-icon-br"></span>
                 </mat-button-toggle>
-                <mat-button-toggle value="en-us" aria-label="English">
+                <mat-button-toggle (click)="setLanguage('en-us')" aria-label="English">
                     <span class="flag-icon flag-icon-us"></span>
                 </mat-button-toggle>
             </mat-button-toggle-group>
         </mat-toolbar-row>
     </mat-card-header>
     <mat-card-content>
-        <form class="currency-form">
             <mat-label>De:</mat-label>
             <div class="full-width">
                 <mat-button-toggle-group #currencyFrom="matButtonToggleGroup">
-                    <mat-button-toggle value="BRL" aria-label="Reais">
-                    BRL
-                    </mat-button-toggle>
-                    <mat-button-toggle value="USD" aria-label="Dolares">
-                    USD
-                    </mat-button-toggle>
-                    <mat-button-toggle value="EUR" aria-label="Euros">
-                    EUR
-                    </mat-button-toggle>
-                    <mat-button-toggle value="BTN" aria-label="Bitcoins">
-                    BitCoin
-                    </mat-button-toggle>
+                    <mat-button-toggle (click)="setCurrencyFrom('BRL')" aria-label="Reais">BRL</mat-button-toggle>
+                    <mat-button-toggle (click)="setCurrencyFrom('USD')" aria-label="Dolares">USD</mat-button-toggle>
+                    <mat-button-toggle (click)="setCurrencyFrom('EUR')" aria-label="Euros">EUR</mat-button-toggle>
+                    <mat-button-toggle (click)="setCurrencyFrom('BTN')" aria-label="Bitcoins">BitCoin</mat-button-toggle>
                 </mat-button-toggle-group>
             </div >
-            <div class="example-selected-value">Selected value: {{currencyFrom.value}}</div>
         
             <mat-form-field class="full-width">
-              <input matInput placeholder="Coloque o valor">
+              <input matInput placeholder="Coloque o valor" [(ngModel)]="amount">
+              <button mat-button *ngIf="amount" matSuffix mat-icon-button aria-label="Limpar" (click)="amount=''">
+                X
+              </button>
             </mat-form-field>
 
             <mat-label>Para:</mat-label>
             <div class="full-width">
-                <mat-button-toggle-group #currencyTo="matButtonToggleGroup">
-                    <mat-button-toggle value="BRL" aria-label="Reais">
-                    BRL
-                    </mat-button-toggle>
-                    <mat-button-toggle value="USD" aria-label="Dolares">
-                    USD
-                    </mat-button-toggle>
-                    <mat-button-toggle value="EUR" aria-label="Euros">
-                    EUR
-                    </mat-button-toggle>
-                    <mat-button-toggle value="BTN" aria-label="Bitcoins">
-                    BitCoin
-                    </mat-button-toggle>
+                <mat-button-toggle-group #currencyTo="matButtonToggleGroup" >
+                    <mat-button-toggle (click)="setCurrencyTo('BRL')" aria-label="Reais">BRL</mat-button-toggle>
+                    <mat-button-toggle (click)="setCurrencyTo('USD')" aria-label="Dolares">USD</mat-button-toggle>
+                    <mat-button-toggle (click)="setCurrencyTo('EUR')" aria-label="Euros">EUR</mat-button-toggle>
+                    <mat-button-toggle (click)="setCurrencyTo('BTN')" aria-label="Bitcoins">BitCoin</mat-button-toggle>
                 </mat-button-toggle-group>
             </div>
 
-            <button mat-stroked-button class="full-width" color="primary" disabled>Calcular</button>
-            <div class="example-selected-value">Selected value: {{currencyTo.value}}</div>
-        </form>
-
-
-        <mat-label>R$ 100000.00</mat-label>
+            <button mat-stroked-button class="full-width" color="primary" (click)="currencyLookup()" >Calcular</button>
+        <mat-label>{{ polledCurrency }}</mat-label>
     </mat-card-content>
     <mat-card-actions>
         Made by Thiago Ruis
