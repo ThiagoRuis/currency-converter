@@ -22,6 +22,7 @@ export class AppComponent  {
 
   constructor(private http: HttpClient, private translate: TranslateService) {
       translate.setDefaultLang('pt-br');
+      this.currencyFrom = 'BRL';
    }
 
   currencyLookup() {
@@ -48,11 +49,7 @@ export class AppComponent  {
       return null;
     }
 
-    if (this.currencyFrom === 'BTN') {
-      this.http.get('https://blockchain.info/ticker').subscribe(
-        (data: any) => this.polledCurrency = this.amount * data[this.currencyTo].last
-      );
-    } else if(this.currencyTo === 'BTN') {
+    if(this.currencyTo === 'BTN') {
       this.http.get('https://blockchain.info/ticker').subscribe(
         (data: any) => this.polledCurrency = this.amount / data[this.currencyFrom].last
       );
@@ -83,5 +80,14 @@ export class AppComponent  {
 
   setLanguage(language) {
     this.translate.use(language);
+    if(language === 'en-us') {
+      this.currencyFrom = 'USD';
+    }
+    if(language === 'en-uk') {
+      this.currencyFrom = 'EUR';
+    }
+    if(language === 'pt-br') {
+      this.currencyFrom = 'BRL';
+    }
   }
 }

@@ -17,16 +17,7 @@
         </mat-toolbar-row>
     </mat-card-header>
     <mat-card-content>
-            <mat-label>{{ 'from' | translate }}:</mat-label>
-            <div class="full-width">
-                <mat-button-toggle-group>
-                    <mat-button-toggle (click)="setCurrencyFrom('BRL')" aria-label="Reais">BRL</mat-button-toggle>
-                    <mat-button-toggle (click)="setCurrencyFrom('USD')" aria-label="Dolares">USD</mat-button-toggle>
-                    <mat-button-toggle (click)="setCurrencyFrom('EUR')" aria-label="Euros">EUR</mat-button-toggle>
-                    <mat-button-toggle (click)="setCurrencyFrom('BTN')" aria-label="Bitcoins">BitCoin</mat-button-toggle>
-                </mat-button-toggle-group>
-            </div >
-        
+            <mat-label>{{ 'from' | translate }}: {{ currencyFrom }}</mat-label>
             <mat-form-field class="full-width">
               <input matInput placeholder="{{ 'insert_value' | translate }}" [(ngModel)]="amount">
               <button mat-button *ngIf="amount" matSuffix mat-icon-button aria-label="Limpar" (click)="amount=0">
