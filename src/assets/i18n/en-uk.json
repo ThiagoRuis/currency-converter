@@ -1,0 +1,7 @@
+{
+    "title": "Currency converter",
+    "from": "From",
+    "to": "To",
+    "insert_value": "Insert desired value:",
+    "convert": "Calculate"
+}

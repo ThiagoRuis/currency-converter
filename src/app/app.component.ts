@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { timer } from 'rxjs';
 import * as moment from 'moment';
 import 'moment/locale/pt-br';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -19,7 +20,9 @@ export class AppComponent  {
   amount: number;
   prefixes: {'BRL': 'R$', 'USD': 'U$', 'EUR': '€', 'BTC': 'BTC'};
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private translate: TranslateService) {
+      translate.setDefaultLang('pt-br');
+   }
 
   currencyLookup() {
     if(this.timer) {
@@ -79,6 +82,6 @@ export class AppComponent  {
   }
 
   setLanguage(language) {
-    this.language = language;
+    this.translate.use(language);
   }
 }
