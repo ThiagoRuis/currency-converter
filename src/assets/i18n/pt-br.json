@@ -1,0 +1,7 @@
+{
+    "title": "Conversor de moedas",
+    "from": "De",
+    "to": "Para",
+    "insert_value": "Insira o valor desejado:",
+    "convert": "Calcular"
+}
